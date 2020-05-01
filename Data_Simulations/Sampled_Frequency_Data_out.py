@@ -193,17 +193,22 @@ text_file_buf2 = open("RX2_buffer.txt","w")
 text_file_buf3 = open("RX3_buffer.txt","w")
 
 # samples_calc = 100 # just do batches of 100
-s_sampled_1 = 'float32_t sampled_RX1[] = {'
-s_sampled_2 = 'float32_t sampled_RX2[] = {'
-s_sampled_3 = 'float32_t sampled_RX3[] = {'
+# s_sampled_1 = 'float32_t sampled_RX1[] = {'
+# s_sampled_2 = 'float32_t sampled_RX2[] = {'
+# s_sampled_3 = 'float32_t sampled_RX3[] = {'
 
-text_file_buf1.write(s_sampled_1)
-text_file_buf2.write(s_sampled_2)
-text_file_buf3.write(s_sampled_3)
+s_sampled_1 = ''
+s_sampled_2 = ''
+s_sampled_3 = ''
+
+
+# text_file_buf1.write(s_sampled_1)
+# text_file_buf2.write(s_sampled_2)
+# text_file_buf3.write(s_sampled_3)
 
 def calc_write(text_file,freq,sampling_freq,sample_num):
 	sample_value = freq_data(freq,sampling_freq,sample_num)
-	s = str(sample_value) + ','
+	s = str(sample_value) + '\n'
 	text_file.write(s)
 
 for q in range(samples):
