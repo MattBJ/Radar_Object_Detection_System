@@ -118,7 +118,7 @@ print(samples)
 
 # dt = 0.0000001 # let's make it real as possible --> 10 Msps
 dt = 1/sampling_freq
-dx_0 = (x_0 - x_f)/(dt*samples)
+dx_0 = (x_f - x_0)/(dt*samples)
 
 
 y_0 = 5
@@ -216,6 +216,12 @@ for q in range(samples):
 	calc_write(text_file_buf1,F_1[q],sampling_freq,q)
 	calc_write(text_file_buf2,F_2[q],sampling_freq,q)
 	calc_write(text_file_buf3,F_3[q],sampling_freq,q)
+
+# for x in range(int(samples/2048)):
+	# print(F_1[x*2048]/(6e11))
+
+print('final x value of ordinance: ',actual_x[-1])
+print('final y value of ordinance: ',actual_y[-1])
 
 # text_file_buf1.close()
 
