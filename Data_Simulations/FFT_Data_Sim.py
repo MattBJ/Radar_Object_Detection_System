@@ -11,16 +11,33 @@
 # Final 'global' scope variables: Position buffers, iteration storage for files? Maybe that's just local to the looping
 
 import numpy as np
-from scipy import fftpack
-
+import scipy as sp
+import scipy.fftpack
+import pylab
 
 def fft_and_conversion(sample_buffer,sample_size,sample_freq):
 	# Calculates the fft of the buffer
 	# Converts this fft value to the 'best guess' of the position at this time instance
 	# print(sample_buffer.shape)
 	dt = 1/sample_freq
-	fft_sample_freq = fftpack.fftfreq(sample_size,d=dt)
-	spectrum = fftpack.fft(sample_buffer)
+	
+
+	fft_sample_freq = sp.fftpack.fftfreq(sample_size,d=dt)
+	spectrum = sp.fftpack.fft(sample_buffer)
+
+	# spectrum = abs(sp.fft(sample_buffer))
+
+	# plot some shit yo
+
+	# pylab.subplot(211)
+	# pylab.plot(range(sample_size), sample_buffer)
+	# pylab.subplot(212)
+	# pylab.plot(fft_sample_freq,20*scipy.log10(spectrum),'x')
+	# pylab.show()
+
+
+
+
 	# spectrum = np.fft.rfftn(sample_buffer) # sample_size - point fft (ie sample_size number of bins)
 
 	# print(spectrum)
