@@ -124,6 +124,8 @@ def read_elements(buffer_file,it_offset,sample_size,sample_freq,dist_file):
 	return it_offset#, distance
 
 file_1_name = "RX1_buffer.txt"
+file_2_name = "RX2_buffer.txt"
+file_3_name = "RX3_buffer.txt"
 
 N = 9e4
 
@@ -133,10 +135,15 @@ sample_size = 2048
 sample_freq = 100000 # 100ksps
 
 # pos_buffer = []
-it_offset = 0
+it_offset1, it_offset2, it_offset3 = 0,0,0
 
-file_out_name = "RX1_DistBufOut.txt"
-file_out = open(file_out_name,'w')
+file_out_name1 = "RX1_DistBufOut.txt"
+file_out_name2 = "RX2_DistBufOut.txt"
+file_out_name3 = "RX3_DistBufOut.txt"
+
+file_out1 = open(file_out_name1,'w')
+file_out2 = open(file_out_name2,'w')
+file_out3 = open(file_out_name3,'w')
 
 
 # print(int(N/sample_size))
@@ -149,7 +156,9 @@ file_out = open(file_out_name,'w')
 for i in range(int(N - sample_size)): # After waitig x samples, can start 'really' sampling
 	print(i)
 	# it_offset, tmp_dist = read_elements(file_1_name,it_offset,sample_size,sample_freq,file_out_name)
-	it_offset = read_elements(file_1_name,it_offset,sample_size,sample_freq,file_out)
+	it_offset1 = read_elements(file_1_name,it_offset1,sample_size,sample_freq,file_out1)
+	it_offset2 = read_elements(file_2_name,it_offset2,sample_size,sample_freq,file_out2)
+	it_offset3 = read_elements(file_3_name,it_offset3,sample_size,sample_freq,file_out3)
 	# pos_buffer.append(tmp_dist)	
 
 file_out.close()
