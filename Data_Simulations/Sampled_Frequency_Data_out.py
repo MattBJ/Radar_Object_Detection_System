@@ -217,8 +217,20 @@ for q in range(samples):
 	calc_write(text_file_buf2,F_2[q],sampling_freq,q)
 	calc_write(text_file_buf3,F_3[q],sampling_freq,q)
 
-# for x in range(int(samples/2048)):
-	# print(F_1[x*2048]/(6e11))
+sample_size = 512 # or 2024
+
+true_RX1Dist_fname = "RX1_TruDist.txt"
+
+file_true = open(true_RX1Dist_fname,'w')
+
+for x in range(int(samples/sample_size)):
+	print(F_1[x*sample_size]/(6e11))
+
+for x in range(samples):
+	s = str(F_1[x]/(6e11)) + '\n'
+	file_true.write(s)
+
+file_true.close()
 
 print('final x value of ordinance: ',actual_x[-1])
 print('final y value of ordinance: ',actual_y[-1])
