@@ -109,7 +109,7 @@ RX1_pos = np.array([0,1,0])
 RX2_pos = np.array([0,0,((4/3)**(1/2))/2])
 RX3_pos = np.array([0,0,-((4/3)**(1/2))/2])
 
-x_0 = 5
+x_0 = 4
 x_f = 1
 
 sampling_freq = 100000
@@ -142,6 +142,11 @@ actual_x = np.array([x_0 + (dx_0)*(i*dt) for i in range(samples)])
 
 actual_y = generate_y_data(y_0,dy_0,0,0,dt,samples)
 
+# actual_x = np.ones(samples) * x_0
+# actual_y = np.ones(samples) * y_0 # let's just keep it stationary
+
+# Try and work with the generation using stationary object!
+
 print(actual_x.shape)
 print(actual_y.shape)
 
@@ -164,9 +169,9 @@ dist_RX3 = ((RX3_x - actual_x)**2 + (RX3_y - actual_x)**2)**(1/2)
 # Now have all the distance information from the separate RX's
 # Now convert the 3 buffers to frequency data! --> Total distance * the frequency rate change
 
-F_1 = (dist_TX + dist_RX1) * 6e11
-F_2 = (dist_TX + dist_RX2) * 6e11
-F_3 = (dist_TX + dist_RX3) * 6e11
+F_1 = (dist_TX + dist_RX1)/(3e8) * 6e11
+F_2 = (dist_TX + dist_RX2)/(3e8) * 6e11
+F_3 = (dist_TX + dist_RX3)/(3e8) * 6e11
 
 # print(D_1)
 
@@ -212,7 +217,7 @@ def calc_write(text_file,freq,sampling_freq,sample_num):
 	text_file.write(s)
 
 for q in range(samples):
-	print('text_file writing, iteration: ', q)
+	print('text_file writing, iteration: ', q, 'Frequency at q: ', F_1[q])
 	calc_write(text_file_buf1,F_1[q],sampling_freq,q)
 	calc_write(text_file_buf2,F_2[q],sampling_freq,q)
 	calc_write(text_file_buf3,F_3[q],sampling_freq,q)
